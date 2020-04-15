@@ -1,0 +1,4 @@
+com.flute.sample.resources
+color ic_launcher_background
+drawable app_icon
+drawable ic_launcher_foreground

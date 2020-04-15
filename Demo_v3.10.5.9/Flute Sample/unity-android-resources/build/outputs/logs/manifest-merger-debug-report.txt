@@ -1,0 +1,31 @@
+-- Merging decision tree log ---
+manifest
+ADDED from /Users/sainase/Desktop/V3.10.5.2/Flute Sample/unity-android-resources/AndroidManifest.xml:1:39-2:103
+INJECTED from /Users/sainase/Desktop/V3.10.5.2/Flute Sample/unity-android-resources/AndroidManifest.xml:1:39-2:103
+INJECTED from /Users/sainase/Desktop/V3.10.5.2/Flute Sample/unity-android-resources/AndroidManifest.xml:1:39-2:103
+INJECTED from /Users/sainase/Desktop/V3.10.5.2/Flute Sample/unity-android-resources/AndroidManifest.xml:1:39-2:103
+INJECTED from /Users/sainase/Desktop/V3.10.5.2/Flute Sample/unity-android-resources/AndroidManifest.xml:1:39-2:103
+INJECTED from /Users/sainase/Desktop/V3.10.5.2/Flute Sample/unity-android-resources/AndroidManifest.xml:1:39-2:103
+INJECTED from /Users/sainase/Desktop/V3.10.5.2/Flute Sample/unity-android-resources/AndroidManifest.xml:1:39-2:103
+	package
+		ADDED from /Users/sainase/Desktop/V3.10.5.2/Flute Sample/unity-android-resources/AndroidManifest.xml:1:108-144
+		INJECTED from /Users/sainase/Desktop/V3.10.5.2/Flute Sample/unity-android-resources/AndroidManifest.xml
+		INJECTED from /Users/sainase/Desktop/V3.10.5.2/Flute Sample/unity-android-resources/AndroidManifest.xml
+	android:versionName
+		ADDED from /Users/sainase/Desktop/V3.10.5.2/Flute Sample/unity-android-resources/AndroidManifest.xml:2:25-50
+		INJECTED from /Users/sainase/Desktop/V3.10.5.2/Flute Sample/unity-android-resources/AndroidManifest.xml
+		INJECTED from /Users/sainase/Desktop/V3.10.5.2/Flute Sample/unity-android-resources/AndroidManifest.xml
+	xmlns:android
+		ADDED from /Users/sainase/Desktop/V3.10.5.2/Flute Sample/unity-android-resources/AndroidManifest.xml:1:49-107
+	android:versionCode
+		ADDED from /Users/sainase/Desktop/V3.10.5.2/Flute Sample/unity-android-resources/AndroidManifest.xml:2:1-24
+		INJECTED from /Users/sainase/Desktop/V3.10.5.2/Flute Sample/unity-android-resources/AndroidManifest.xml
+		INJECTED from /Users/sainase/Desktop/V3.10.5.2/Flute Sample/unity-android-resources/AndroidManifest.xml
+uses-sdk
+ADDED from /Users/sainase/Desktop/V3.10.5.2/Flute Sample/unity-android-resources/AndroidManifest.xml:2:51-92
+INJECTED from /Users/sainase/Desktop/V3.10.5.2/Flute Sample/unity-android-resources/AndroidManifest.xml:2:51-92
+INJECTED from /Users/sainase/Desktop/V3.10.5.2/Flute Sample/unity-android-resources/AndroidManifest.xml:2:51-92
+	android:targetSdkVersion
+		ADDED from /Users/sainase/Desktop/V3.10.5.2/Flute Sample/unity-android-resources/AndroidManifest.xml:2:61-90
+		INJECTED from /Users/sainase/Desktop/V3.10.5.2/Flute Sample/unity-android-resources/AndroidManifest.xml
+		INJECTED from /Users/sainase/Desktop/V3.10.5.2/Flute Sample/unity-android-resources/AndroidManifest.xml
