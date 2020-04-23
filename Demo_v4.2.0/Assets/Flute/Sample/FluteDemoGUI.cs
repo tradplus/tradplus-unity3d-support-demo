@@ -156,6 +156,7 @@ public class FluteDemoGUI : MonoBehaviour
        
         var anyAdUnitId = _appId;
         //初始化TradPlus SDK
+
         TradPlus.InitializeSdk(new TradPlusBase.SdkConfiguration
         {
             AdUnitId = anyAdUnitId,
@@ -251,6 +252,7 @@ public class FluteDemoGUI : MonoBehaviour
         if (GUILayout.Button("Show"))
         {
             ClearStatusLabel();
+            //展示广告
             TradPlus.ShowBanner(_bannerAdUnits, true);
             _adUnitToShownMapping[_bannerAdUnits] = true;
         }
