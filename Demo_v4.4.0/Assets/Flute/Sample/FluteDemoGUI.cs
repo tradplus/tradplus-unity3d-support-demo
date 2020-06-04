@@ -166,7 +166,7 @@ public class FluteDemoGUI : MonoBehaviour
 
     private void Start()
     {
-        //在初始化TradPlus SDK之前调用
+        //在初始化SDK之前调用
         TradPlus.setGDPRListener();
 
 
@@ -183,7 +183,7 @@ public class FluteDemoGUI : MonoBehaviour
 
         /*
        *          AdUnitID，TradPlus后台设置 对应广告类型的广告位（非三方广告网络的placementId）
-       *          这里添加的是供测试使用的插屏广告位，正式上线前必须替换成您申请的广告位
+       *          这里添加的是供测试使用的广告位，正式上线前必须替换成您申请的广告位
        *
        *          注意广告位不能填错，否则无法拿到广告
        *          仅在初始化广告位时调用一次
@@ -266,6 +266,7 @@ public class FluteDemoGUI : MonoBehaviour
         if (GUILayout.Button("Destroy"))
         {
             ClearStatusLabel();
+            //销毁广告
             TradPlus.DestroyBanner(_bannerAdUnits);
             _adUnitToLoadedMapping[_bannerAdUnits] = false;
             _adUnitToShownMapping[_bannerAdUnits] = false;
@@ -284,6 +285,7 @@ public class FluteDemoGUI : MonoBehaviour
         if (GUILayout.Button("Hide"))
         {
             ClearStatusLabel();
+            //隐藏广告
             TradPlus.ShowBanner(_bannerAdUnits, false);
             _adUnitToShownMapping[_bannerAdUnits] = false;
         }
@@ -493,7 +495,7 @@ public class FluteDemoGUI : MonoBehaviour
             }
             else
             {
-                UpdateStatusLabel("该用户是欧盟用户！用户选择过");
+                UpdateStatusLabel("该用户是欧盟用户！用户没有选择过");
                 //是欧盟用户，弹出授权页，让客户选择
                 TradPlus.showUploadDataNotifyDialog();
             }
