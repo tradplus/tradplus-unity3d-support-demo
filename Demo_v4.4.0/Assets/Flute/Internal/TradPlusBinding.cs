@@ -44,6 +44,11 @@ public class TradPlusBinding
         _tradplusShowInterstitialAd(_adUnitId);
     }
 
+    public void ShowInterstitialConfirmUWSAd()
+    {
+        _tradplusShowInterstitialConfirmUWSAd(_adUnitId);
+    }
+
     public void DestroyInterstitialAd()
     {
         _tradplusDestroyInterstitialAd(_adUnitId);
@@ -65,7 +70,12 @@ public class TradPlusBinding
     {
 		_tradplusShowRewardedVideo(_adUnitId);
     }
-		
+
+    public void ShowRewardedVideoConfirmUWSAd()
+    {
+        _tradplusRewardedVideoConfirmUWSAd(_adUnitId);
+    }
+    
     public void DestroyRewardedVideo()
     {
         _tradplusDestroyRewardedVideo(_adUnitId);
@@ -75,6 +85,7 @@ public class TradPlusBinding
     {
         _tradplusRequestOfferWall(_adUnitId);
     }
+
   // Queries if a OfferWall ad has been loaded for the given ad unit id.
     public bool HasOfferWall()
     {
@@ -85,6 +96,11 @@ public class TradPlusBinding
     public void ShowOfferWall()
     {
         _tradplusShowOfferWall(_adUnitId);
+    }
+
+    public void ShowOfferWallConfirmUWSAd()
+    {
+        _tradplusShowOfferWallConfirmUWSAd(_adUnitId);
     }
 
     public void DestroyOfferWall()
@@ -104,15 +120,18 @@ public class TradPlusBinding
     private static void _tradplusRequestInterstitialAd(string adUnitId) {}
     private static bool _tradplusIsInterstitialReady(string adUnitId) { return false; }
     private static void _tradplusShowInterstitialAd(string adUnitId) {}
+    private static void _tradplusShowInterstitialConfirmUWSAd(string adUnitId){}
     private static void _tradplusDestroyInterstitialAd(string adUnitId) {}
     private static void _tradplusRequestRewardedVideo(string adUnitId) {}
     private static bool _tradplusHasRewardedVideo(string adUnitId) { return false; }
     private static string _tradplusGetAvailableRewards(string adUnitId) { return null; }
     private static void _tradplusShowRewardedVideo(string adUnitId) {}
+    private static void _tradplusRewardedVideoConfirmUWSAd(string adUnitId){}
     private static void _tradplusDestroyRewardedVideo(string adUnitId) {}
     private static void _tradplusRequestOfferWall(string adUnitId) {}
     private static bool _tradplusHasOfferWall(string adUnitId) { return false; }
     private static void _tradplusShowOfferWall(string adUnitId) {}
+    private static void _tradplusShowOfferWallConfirmUWSAd(string adUnitId) {}
     private static void _tradplusDestroyOfferWall(string adUnitId) {}
 #else
     [DllImport("__Internal")]
@@ -137,6 +156,9 @@ public class TradPlusBinding
     [DllImport("__Internal")]
     private static extern void _tradplusShowInterstitialAd(string adUnitId);
 
+    [DllImport("__Internal")]
+    private static extern void _tradplusShowInterstitialConfirmUWSAd(string adUnitId);
+
 
     [DllImport("__Internal")]
     private static extern void _tradplusDestroyInterstitialAd(string adUnitId);
@@ -148,9 +170,11 @@ public class TradPlusBinding
     [DllImport("__Internal")]
     private static extern bool _tradplusHasRewardedVideo(string adUnitId);
 
-
     [DllImport("__Internal")]
     private static extern void _tradplusShowRewardedVideo(string adUnitId);
+
+    [DllImport("__Internal")]
+    private static extern void _tradplusRewardedVideoConfirmUWSAd(string adUnitId);
 
     [DllImport("__Internal")]
     private static extern void _tradplusDestroyRewardedVideo(string adUnitId);
@@ -158,13 +182,14 @@ public class TradPlusBinding
     [DllImport("__Internal")]
     private static extern void _tradplusRequestOfferWall(string adUnitId);
 
-
     [DllImport("__Internal")]
     private static extern bool _tradplusHasOfferWall(string adUnitId);
 
-
     [DllImport("__Internal")]
     private static extern void _tradplusShowOfferWall(string adUnitId);
+
+    [DllImport("__Internal")]
+    private static extern void _tradplusShowOfferWallConfirmUWSAd(string adUnitId);
 
     [DllImport("__Internal")]
     private static extern void _tradplusDestroyOfferWall(string adUnitId);

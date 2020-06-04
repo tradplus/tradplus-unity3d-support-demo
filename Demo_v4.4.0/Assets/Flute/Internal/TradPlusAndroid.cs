@@ -42,7 +42,7 @@ public class TradPlusAndroid : TradPlusBase
         PluginClass.CallStatic("setGDPRListener");
     }
 
-    public static void setFirstShow(bool firstShow = false)
+    public static void setFirstShow(bool firstShow = true)
     {
         PluginClass.CallStatic("setFirstShow", firstShow);
     }

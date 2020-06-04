@@ -227,6 +227,7 @@ public class FluteEventListener : MonoBehaviour
     private void OnInterstitialAllLoadedEvent(bool isLoadedSucces, string adUnitId)
     {
         Debug.Log("OnInterstitialAllLoadedEvent: " + adUnitId + "OnInterstitialAllLoadedEvent:: " + " isLoadedSucces:" + isLoadedSucces);
+        _demoGUI.OnInterstitialAllLoaded(isLoadedSucces,adUnitId);
     }
 
 
@@ -275,6 +276,7 @@ public class FluteEventListener : MonoBehaviour
     private void OnRewardedVideoAllLoadedEvent(bool isLoadedSucces,string adUnitId)
     {
         Debug.Log("OnRewardedVideoAllLoadedEvent: " + adUnitId + "OnRewardedVideoAllLoadedEvent:: " +" isLoadedSucces:" + isLoadedSucces);
+        _demoGUI.OnRewardedVideoAllLoaded(isLoadedSucces, adUnitId);
     }
 
 
