@@ -124,7 +124,7 @@ public class FluteDemoGUI : MonoBehaviour
     }
 
     //针对整个广告位加载的结果做一个状态的返回
-    //当isLoadedSucces为false，重新加载广告
+    //当isLoadedSucces为false，表明该广告位下所有广告源请求失败，需要重新加载广告,控制2～3次，每次间隔20秒
     public void OnInterstitialAllLoaded(bool isLoadedSucces, string adUnitId)
     {
         if (!isLoadedSucces) {
@@ -133,7 +133,7 @@ public class FluteDemoGUI : MonoBehaviour
     }
 
     //针对整个广告位加载的结果做一个状态的返回
-    //当isLoadedSucces为false，重新加载广告
+    //当isLoadedSucces为false，表明该广告位下所有广告源请求失败，需要重新加载广告,控制2～3次，每次间隔20秒
    public void OnRewardedVideoAllLoaded(bool isLoadedSucces, string adUnitId)
     {
         if (!isLoadedSucces)
