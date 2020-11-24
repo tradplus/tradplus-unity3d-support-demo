@@ -4,8 +4,8 @@
 
 ### 各版本Gradle配置
 
-* V5.0.4 Android Support Gradle 配置请参考：
- https://doc.tradplus.com/android_sdk-support-v5.0.4
+* V5.0.5 Android Support Gradle 配置请参考：
+ https://doc.tradplus.com/android_sdk-support-v5.0.5
 
 * V4.8.2 Android Support Gradle 配置请参考：
  https://doc.tradplus.com/android_sdk-support-v4.8.2
