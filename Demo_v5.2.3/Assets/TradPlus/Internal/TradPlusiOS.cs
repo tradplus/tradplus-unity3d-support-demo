@@ -4,8 +4,6 @@ using System.Diagnostics.CodeAnalysis;
 using System.Runtime.InteropServices;
 using UnityEngine;
 using MP = TradPlusBinding;
-
-
 /// <summary>
 /// This class serves as a bridge to the TradPlus iOS SDK (via the TradPlus Unity iOS wrapper).
 /// For full API documentation, See <see cref="TradPlusUnityEditor"/>.
@@ -17,104 +15,113 @@ public class TradPlusiOS : TradPlusBase
     {
         InitManager();
     }
-
-
     private static readonly Dictionary<string, MP> PluginsDict = new Dictionary<string, MP>();
-
-
     #region SdkSetup
-
     /// See TradPlusUnityEditor.<see cref="TradPlusUnityEditor.InitializeSdk(string)"/>
-    public static void InitializeSdk(string anyAdUnitId)
+    public static void InitializeSdk(string appId)
     {
-        ValidateAdUnitForSdkInit(anyAdUnitId);
-        InitializeSdk(new SdkConfiguration { AdUnitId = anyAdUnitId });
+        ValidateAdUnitForSdkInit(appId);
+        InitializeSdk(new SdkConfiguration { AppId = appId });
     }
-
-
     /// See TradPlusUnityEditor.<see cref="TradPlusUnityEditor.InitializeSdk(TradPlusBase.SdkConfiguration)"/>
     public static void InitializeSdk(SdkConfiguration sdkConfiguration)
     {
-        ValidateAdUnitForSdkInit(sdkConfiguration.AdUnitId);
-        _tradplusInitializeSdk(sdkConfiguration.AdUnitId);
+        ValidateAdUnitForSdkInit(sdkConfiguration.AppId);
+        _tradplusInitializeSdk(sdkConfiguration.AppId);
     }
-
+    public static bool IsSdkInitialized()
+    {
+        return _tradplusIsSdkInitialized();
+    }
     ///GDPR
     public static void showUploadDataNotifyDialog(string url = "")
     {
         _tradplusShowUploadDataNotifyDialog(url);
     }
-
-
     public static void setGDPRUploadDataLevel(int level)
     {
         _tradplusSetGDPRUploadDataLevel(level);
     }
-
-
     public static int getGDPRUploadDataLevel()
     {
         return _tradplusGetGDPRUploadDataLevel();
     }
-
-
     public static bool isEUTraffic()
     {
         return _tradplusIsEUTraffic();
     }
-
-
+    //GDPRChild
+    public static void setGDPRChild(bool isGDPRChild)
+    {
+        _tradplusSetGDPRChild(isGDPRChild);
+    }
+    //CCPA
+    public static void setCCPADataCollection(bool isCCPA)
+    {
+        _tradplusSetCCPADataCollection(isCCPA);
+    }
+    //COPPA
+    public static void setCOPPAChild(bool isChild)
+    {
+        _tradplusSetCOPPAChild(isChild);
+    }
+    //AuthUID
+    public static void setAuthUID(bool needAuthUID)
+    {
+        _tradplusSetAuthUID(needAuthUID);
+    }
     /// See TradPlusUnityEditor.<see cref="TradPlusUnityEditor.LoadBannerPluginsForAdUnits(string[])"/>
     public static void LoadBannerPluginsForAdUnits(string adUnitId)
     {
         LoadPluginsForAdUnits(adUnitId);
     }
-
-
+    public static void LoadSplashPluginsForAdUnits(string adUnitId)
+    {
+        LoadPluginsForAdUnits(adUnitId);
+    }
+    public static void LoadNativePluginsForAdUnits(string adUnitId)
+    {
+        LoadPluginsForAdUnits(adUnitId);
+    }
     /// See TradPlusUnityEditor.<see cref="TradPlusUnityEditor.LoadInterstitialPluginsForAdUnits(string[])"/>
     public static void LoadInterstitialPluginsForAdUnits(string adUnitId)
     {
         LoadPluginsForAdUnits(adUnitId);
     }
-
-
     /// See TradPlusUnityEditor.<see cref="TradPlusUnityEditor.LoadRewardedVideoPluginsForAdUnits(string[])"/>
     public static void LoadRewardedVideoPluginsForAdUnits(string adUnitId)
     {
         LoadPluginsForAdUnits(adUnitId);
     }
-
     public static void LoadOfferWallPluginsForAdUnits(string adUnitId)
     {
         LoadPluginsForAdUnits(adUnitId);
     }
 
-    /// See TradPlusUnityEditor.<see cref="TradPlusUnityEditor.IsSdkInitialized"/>
-    public static bool IsSdkInitialized {
-        get { return true; }
-    }
-		
     /// See TradPlusUnityEditor.<see cref="TradPlusUnityEditor.GetSdkName"/>
     protected static string GetSdkName()
     {
         return "iOS SDK v" + _tradplusGetSDKVersion();
     }
-
-
     private static void LoadPluginsForAdUnits(string adUnitId)
     {
         PluginsDict.Add(adUnitId, new MP(adUnitId));
         Debug.Log(" AdUnit loaded for plugins:\n" + adUnitId);
     }
-
     #endregion SdkSetup
-
-
+    #region Splashs
+    public static void LoadSplash(string adUnitId)
+    {
+        MP plugin;
+        if (PluginsDict.TryGetValue(adUnitId, out plugin))
+            plugin.LoadSplash();
+        else
+            ReportAdUnitNotFound(adUnitId);
+    }
+    #endregion Splashs
     #region Banners
-
-
     /// See TradPlusUnityEditor.<see cref="TradPlusUnityEditor.CreateBanner(string,TradPlusBase.AdPosition,TradPlusBase.BannerType)"/>
-    public static void CreateBanner(string adUnitId, AdPosition position)
+    public static void CreateBanner(string adUnitId, TradPlus.AdPosition position)
     {
         MP plugin;
         if (PluginsDict.TryGetValue(adUnitId, out plugin))
@@ -122,8 +129,6 @@ public class TradPlusiOS : TradPlusBase
         else
             ReportAdUnitNotFound(adUnitId);
     }
-
-
     /// See TradPlusUnityEditor.<see cref="TradPlusUnityEditor.ShowBanner(string,bool)"/>
     public static void ShowBanner(string adUnitId, bool shouldShow)
     {
@@ -133,7 +138,7 @@ public class TradPlusiOS : TradPlusBase
         else
             ReportAdUnitNotFound(adUnitId);
     }
-		
+
     /// See TradPlusUnityEditor.<see cref="TradPlusUnityEditor.ForceRefresh(string)"/>
     public static void DestroyBanner(string adUnitId)
     {
@@ -143,13 +148,29 @@ public class TradPlusiOS : TradPlusBase
         else
             ReportAdUnitNotFound(adUnitId);
     }
-
     #endregion Banners
-
-
+    #region Natives
+    //请求广告 设置frame
+    public static void ShowNative(string adUnitId, int x, int y, int width, int height)
+    {
+        MP plugin;
+        if (PluginsDict.TryGetValue(adUnitId, out plugin))
+            plugin.ShowNative(x, y, width, height);
+        else
+            ReportAdUnitNotFound(adUnitId);
+    }
+    //销毁广告，释放资源
+    public static void HideNative(string adUnitId, bool needDestroy = false)
+    {
+        MP plugin;
+        if (PluginsDict.TryGetValue(adUnitId, out plugin))
+            plugin.HideNative(needDestroy);
+        else
+            ReportAdUnitNotFound(adUnitId);
+    }
+    #endregion Natives
     #region Interstitials
-
-    public static void ShowInterstitialEntryAdScenario(string adUnitId)
+    public static void InterstitialEntryAdScenario(string adUnitId)
     {
         MP plugin;
         if (PluginsDict.TryGetValue(adUnitId, out plugin))
@@ -157,8 +178,7 @@ public class TradPlusiOS : TradPlusBase
         else
             ReportAdUnitNotFound(adUnitId);
     }
-
-    public static void ShowInterstitialEntryAdScenario(string adUnitId, string adSceneId)
+    public static void InterstitialEntryAdScenario(string adUnitId, string adSceneId)
     {
         MP plugin;
         if (PluginsDict.TryGetValue(adUnitId, out plugin))
@@ -166,17 +186,14 @@ public class TradPlusiOS : TradPlusBase
         else
             ReportAdUnitNotFound(adUnitId);
     }
-
     public static void RequestInterstitialAd(string adUnitId, bool autoReload = false, bool isPangleTemplateRender = false)
     {
         MP plugin;
         if (PluginsDict.TryGetValue(adUnitId, out plugin))
-            plugin.RequestInterstitialAd(autoReload,isPangleTemplateRender);
+            plugin.RequestInterstitialAd(autoReload, isPangleTemplateRender);
         else
             ReportAdUnitNotFound(adUnitId);
     }
-
-
     public static void ShowInterstitialAd(string adUnitId)
     {
         MP plugin;
@@ -185,7 +202,6 @@ public class TradPlusiOS : TradPlusBase
         else
             ReportAdUnitNotFound(adUnitId);
     }
-
     public static void ShowInterstitialAd(string adUnitId, string adSceneId)
     {
         MP plugin;
@@ -194,7 +210,6 @@ public class TradPlusiOS : TradPlusBase
         else
             ReportAdUnitNotFound(adUnitId);
     }
-
     public static void ShowInterstitialConfirmUWSAd(string adUnitId)
     {
         MP plugin;
@@ -203,8 +218,6 @@ public class TradPlusiOS : TradPlusBase
         else
             ReportAdUnitNotFound(adUnitId);
     }
-
-
     public static bool IsInterstialReady(string adUnitId)
     {
         MP plugin;
@@ -213,8 +226,6 @@ public class TradPlusiOS : TradPlusBase
         ReportAdUnitNotFound(adUnitId);
         return false;
     }
-
-
     public static void DestroyInterstitialAd(string adUnitId)
     {
         MP plugin;
@@ -223,15 +234,9 @@ public class TradPlusiOS : TradPlusBase
         else
             ReportAdUnitNotFound(adUnitId);
     }
-
-
     #endregion Interstitials
-
-
     #region RewardedVideos
-
-
-    public static void ShowRewardedVideoEntryAdScenario(string adUnitId)
+    public static void RewardedVideoEntryAdScenario(string adUnitId)
     {
         MP plugin;
         if (PluginsDict.TryGetValue(adUnitId, out plugin))
@@ -239,8 +244,7 @@ public class TradPlusiOS : TradPlusBase
         else
             ReportAdUnitNotFound(adUnitId);
     }
-
-    public static void ShowRewardedVideoEntryAdScenario(string adUnitId, string adSceneId)
+    public static void RewardedVideoEntryAdScenario(string adUnitId, string adSceneId)
     {
         MP plugin;
         if (PluginsDict.TryGetValue(adUnitId, out plugin))
@@ -248,7 +252,6 @@ public class TradPlusiOS : TradPlusBase
         else
             ReportAdUnitNotFound(adUnitId);
     }
-
     public static void RequestRewardedVideo(string adUnitId, bool autoReload = false, bool isPangleTemplateRender = false)
     {
         MP plugin;
@@ -257,7 +260,6 @@ public class TradPlusiOS : TradPlusBase
         else
             ReportAdUnitNotFound(adUnitId);
     }
-
     public static void ShowRewardedVideo(string adUnitId)
     {
         MP plugin;
@@ -266,7 +268,6 @@ public class TradPlusiOS : TradPlusBase
         else
             ReportAdUnitNotFound(adUnitId);
     }
-
     public static void ShowRewardedVideo(string adUnitId, string adSceneId)
     {
         MP plugin;
@@ -275,7 +276,6 @@ public class TradPlusiOS : TradPlusBase
         else
             ReportAdUnitNotFound(adUnitId);
     }
-
     public static void ShowRewardedVideoConfirmUWSAd(string adUnitId)
     {
         MP plugin;
@@ -284,7 +284,6 @@ public class TradPlusiOS : TradPlusBase
         else
             ReportAdUnitNotFound(adUnitId);
     }
-
     public static bool HasRewardedVideo(string adUnitId)
     {
         MP plugin;
@@ -293,14 +292,9 @@ public class TradPlusiOS : TradPlusBase
         ReportAdUnitNotFound(adUnitId);
         return false;
     }
-
     #endregion RewardedVideos
-
-
-
     #region Offerwall
-
-	public static void RequestOfferWall(string adUnitId)
+    public static void RequestOfferWall(string adUnitId)
     {
         MP plugin;
         if (PluginsDict.TryGetValue(adUnitId, out plugin))
@@ -308,7 +302,6 @@ public class TradPlusiOS : TradPlusBase
         else
             ReportAdUnitNotFound(adUnitId);
     }
-
     public static void ShowOfferWall(string adUnitId)
     {
         MP plugin;
@@ -317,7 +310,6 @@ public class TradPlusiOS : TradPlusBase
         else
             ReportAdUnitNotFound(adUnitId);
     }
-
     public static void ShowOfferWallConfirmUWSAd(string adUnitId)
     {
         MP plugin;
@@ -326,8 +318,6 @@ public class TradPlusiOS : TradPlusBase
         else
             ReportAdUnitNotFound(adUnitId);
     }
-
-
     public static bool HasOfferWall(string adUnitId)
     {
         MP plugin;
@@ -336,9 +326,7 @@ public class TradPlusiOS : TradPlusBase
         ReportAdUnitNotFound(adUnitId);
         return false;
     }
-
     #endregion Offerwall
-
     #region DllImports
 #if ENABLE_IL2CPP && UNITY_ANDROID
     // IL2CPP on Android scrubs DllImports, so we need to provide stubs to unblock compilation
@@ -357,26 +345,33 @@ public class TradPlusiOS : TradPlusBase
     private static bool _tradplusIsEUTraffic(){return false;}
     private static int _tradplusGetGDPRUploadDataLevel(){return 0;}
     private static void _tradplusSetGDPRUploadDataLevel(int level) {}
-
+    private static void _tradplusSetGDPRChild(bool isGDPRChild) {}
+    private static void _tradplusSetCCPADataCollection(bool isCCPA) {}
+    private static void _tradplusSetCOPPAChild(bool isChild) {}
+    private static void _tradplusSetAuthUID(bool needAuthUID) {}
 #else
     [DllImport("__Internal")]
     private static extern void _tradplusInitializeSdk(string adUnitId);
-
+    [DllImport("__Internal")]
+    private static extern bool _tradplusIsSdkInitialized();
     [DllImport("__Internal")]
     private static extern string _tradplusGetSDKVersion();
-
     [DllImport("__Internal")]
     private static extern void _tradplusShowUploadDataNotifyDialog(string url);
-
     [DllImport("__Internal")]
     private static extern void _tradplusSetGDPRUploadDataLevel(int level);
-
     [DllImport("__Internal")]
     private static extern int _tradplusGetGDPRUploadDataLevel();
-
     [DllImport("__Internal")]
     private static extern bool _tradplusIsEUTraffic();
-
+    [DllImport("__Internal")]
+    private static extern void _tradplusSetGDPRChild(bool isGDPRChild);
+    [DllImport("__Internal")]
+    private static extern void _tradplusSetCCPADataCollection(bool isCCPA);
+    [DllImport("__Internal")]
+    private static extern void _tradplusSetCOPPAChild(bool isChild);
+    [DllImport("__Internal")]
+    private static extern void _tradplusSetAuthUID(bool needAuthUID);
 #endif
     #endregion DllImports
 }

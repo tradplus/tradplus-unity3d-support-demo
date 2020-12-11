@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using UnityEngine;
-
 /// <summary>
 /// This class provides common classes and utitilies needed across platforms
 /// </summary>
@@ -20,70 +19,62 @@ public class TradPlusBase
         BottomCenter,
         BottomRight
     }
-		
+
     /// <summary>
     /// Data object holding any SDK initialization parameters.
     /// </summary>
     public struct SdkConfiguration
     {
         /// <summary>
+        /// app id in tradplus.
+        /// </summary>
+        public string AppId;
+        /// <summary>
         /// Any ad unit that your app uses.
         /// </summary>
         public string AdUnitId;
     }
-		
-
     public struct Reward
     {
         public string Label;
         public int Amount;
-
-
         public override string ToString()
         {
             return string.Format("\"{0} {1}\"", Amount, Label);
         }
-
-
         public bool IsValid()
         {
             return !string.IsNullOrEmpty(Label) && Amount > 0;
         }
     }
-
-    public static readonly string tradplusSDKVersion = "5.0.0";
+    public static readonly string tradplusSDKVersion = "5.2.3";
     private static string _pluginName;
-
-    public static string PluginName {
+    public static string PluginName
+    {
         get { return _pluginName ?? (_pluginName = "TradPlus Unity Plugin v" + tradplusSDKVersion); }
     }
-
-
     protected static void ValidateAdUnitForSdkInit(string adUnitId)
     {
         if (string.IsNullOrEmpty(adUnitId))
             Debug.LogError("A valid ad unit ID is needed to initialize the TradPlus SDK.");
     }
-
-
     protected static void ReportAdUnitNotFound(string adUnitId)
     {
         Debug.LogWarning(string.Format("AdUnit {0} not found: no plugin was initialized", adUnitId));
     }
-
-
     protected static Uri UrlFromString(string url)
     {
         if (String.IsNullOrEmpty(url)) return null;
-        try {
+        try
+        {
             return new Uri(url);
-        } catch {
+        }
+        catch
+        {
             Debug.LogError("Invalid URL: " + url);
             return null;
         }
     }
-
-
     // Allocate the TradPlusManager singleton, which receives all callback events from the native SDKs.
     protected static void InitManager()
     {
@@ -94,7 +85,5 @@ public class TradPlusBase
                 "It looks like you have the " + type.Name
                 + " on a GameObject in your scene. Please remove the script from your scene.");
     }
-
-
     protected TradPlusBase() { }
 }
