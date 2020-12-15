@@ -61,7 +61,7 @@ dependencies {
     implementation 'com.android.support:support-v4:28.0.0'
     implementation 'com.android.support:appcompat-v7:28.+'
     //TradPlus
-    implementation 'com.tradplus.ads:tradplus-sdk:5.2.03'
+    implementation 'com.tradplus.ads:tradplus-sdk:5.2.31'
     //Admob
     implementation 'com.google.android.gms:play-services-ads:17.2.1'
     implementation 'com.tradplus.ads.google:tradplus-google:2.5.2.3.2'
