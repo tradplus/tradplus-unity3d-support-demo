@@ -2,17 +2,10 @@
 
 文档说明 ：https://doc.tradplus.com/unity3d_android_sdk
 
-### 各版本Gradle配置
+### 版本Gradle配置
 
-* V5.0.7 Android Support Gradle 配置请参考：
- https://doc.tradplus.com/android_sdk-support-v5.0.7
-
-* V4.8.2 Android Support Gradle 配置请参考：
- https://doc.tradplus.com/android_sdk-support-v4.8.2
-
-* V4.7.4 Android Support Gradle 配置请参考：
- https://doc.tradplus.com/android_sdk-support-v4.7.4
-
+* V5.2.3 Android Support Gradle 配置请参考：
+ https://doc.tradplus.com/android_sdk-support-v5.2.3
 
 ### 三方广告源引用注意事项
 
