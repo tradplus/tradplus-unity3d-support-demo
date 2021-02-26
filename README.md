@@ -4,9 +4,8 @@
 
 ### 版本Gradle配置
 
-* V5.2.3 Android Support Gradle 配置请参考：
- https://doc.tradplus.com/android_sdk-support-v5.2.3
-
+* https://doc.tradplus.com/android_dvsc_gradle
+* 
 ### 三方广告源引用注意事项
 
 https://doc.tradplus.com/android_sdk_gradle_info
