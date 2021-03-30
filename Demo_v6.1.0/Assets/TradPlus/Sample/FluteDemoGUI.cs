@@ -31,13 +31,11 @@ public class FluteDemoGUI : MonoBehaviour
     private readonly string[] _rewardedRichMediaAdUnits = { };
 #elif UNITY_ANDROID || UNITY_EDITOR
     //测试广告位，上线前要替换成您申请的广告位
-    private readonly string _appId = "6640E7E3BDAC951B8F28D4C8C50E50B5";
-    private readonly string _bannerAdUnits = "E89A890466180B9215487530A8EB519F";
-    private readonly string _bannerAdUnits2 = "AA8B123DBB578187B500B3E9E744D0A5";
-    //private readonly string _nativeAdUnits = "04D8F97E539A50D52E01BA0898135E02";
-    private readonly string _nativeAdUnits = "A11BFAC79E0E76B572E2381C3D458353"; //自测使用
-    private readonly string _interstitialAdUnits = "788E1FCB278B0D7E97282231154458B7";
-    private readonly string _rewardedVideoAdUnits = "702208A872E622C1729FC621025D4B1D";
+    private readonly string _appId = "44273068BFF4D8A8AFF3D5B11CBA3ADE";
+    private readonly string _bannerAdUnits = "A24091715B4FCD50C0F2039A5AF7C4BB";
+    private readonly string _nativeAdUnits = "DDBF26FBDA47FBE2765F1A089F1356BF";
+    private readonly string _interstitialAdUnits = "E609A0A67AF53299F2176C3A7783C46D";
+    private readonly string _rewardedVideoAdUnits = "39DAC7EAC046676C5404004A311D1DB1";
     private readonly string _offerWallAdUnits = "1ED0A69A76A9E3D0D0C6E1D9855FDB94";
 
 #endif
@@ -144,7 +142,6 @@ public class FluteDemoGUI : MonoBehaviour
         _sectionMarginSize = _skin.label.fontSize;
 
         AddAdUnitsToStateMaps(_bannerAdUnits);
-        AddAdUnitsToStateMaps(_bannerAdUnits2);
         AddAdUnitsToStateMaps(_nativeAdUnits);
         AddAdUnitsToStateMaps(_interstitialAdUnits);
         AddAdUnitsToStateMaps(_rewardedVideoAdUnits);
@@ -181,7 +178,6 @@ public class FluteDemoGUI : MonoBehaviour
        *          仅在初始化广告位时调用一次
        */
         TradPlus.LoadBannerPluginsForAdUnits(_bannerAdUnits);
-        TradPlus.LoadBannerPluginsForAdUnits(_bannerAdUnits2);
         TradPlus.LoadNativePluginsForAdUnits(_nativeAdUnits);
         TradPlus.LoadInterstitialPluginsForAdUnits(_interstitialAdUnits);
         TradPlus.LoadRewardedVideoPluginsForAdUnits(_rewardedVideoAdUnits);
@@ -219,7 +215,6 @@ public class FluteDemoGUI : MonoBehaviour
 
         CreateTitleSection();
         CreateBannersSection();
-        CreateBannersSection2();
         CreateNativesSection();
         CreateInterstitialsSection();
         CreateRewardedVideosSection();
@@ -296,58 +291,6 @@ public class FluteDemoGUI : MonoBehaviour
         GUILayout.EndHorizontal();
     }
 
-
-    private void CreateBannersSection2()
-    {
-        const int titlePadding = 102;
-        GUILayout.Space(titlePadding);
-        GUILayout.Label("Banners");
-
-        GUILayout.BeginHorizontal();
-
-        GUI.enabled = !_adUnitToLoadedMapping[_bannerAdUnits2];
-        if (GUILayout.Button(CreateRequestButtonLabel(_bannerAdUnits2)))
-        {
-            Debug.Log("requesting banner with AdUnit: " + _bannerAdUnits2);
-            UpdateStatusLabel("Requesting " + _bannerAdUnits2);
-            //请求Banner广告，并设置在底部弹出
-            TradPlus.CreateBanner(_bannerAdUnits2, TradPlus.AdPosition.BottomCenter);
-            //进入广告场景页面调用
-            TradPlus.BannerEntryAdScenario(_bannerAdUnits2);
-        }
-
-        GUI.enabled = true;
-        if (GUILayout.Button("Destroy"))
-        {
-            ClearStatusLabel();
-            //销毁广告
-            TradPlus.DestroyBanner(_bannerAdUnits2);
-            _adUnitToLoadedMapping[_bannerAdUnits2] = false;
-            _adUnitToShownMapping[_bannerAdUnits2] = false;
-        }
-
-        GUI.enabled = true;
-        if (GUILayout.Button("Show"))
-        {
-            ClearStatusLabel();
-            //展示广告
-            TradPlus.ShowBanner(_bannerAdUnits2, true);
-            _adUnitToShownMapping[_bannerAdUnits2] = true;
-        }
-
-        GUI.enabled = true;
-        if (GUILayout.Button("Hide"))
-        {
-            ClearStatusLabel();
-            //隐藏广告
-            TradPlus.ShowBanner(_bannerAdUnits2, false);
-            _adUnitToShownMapping[_bannerAdUnits2] = false;
-        }
-
-        GUI.enabled = true;
-
-        GUILayout.EndHorizontal();
-    }
 
     private void CreateNativesSection()
     {
