@@ -47,7 +47,7 @@ public class TradPlusBase
             return !string.IsNullOrEmpty(Label) && Amount > 0;
         }
     }
-    public static readonly string tradplusSDKVersion = "6.1.0";
+    public static readonly string tradplusSDKVersion = "6.4.+";
     private static string _pluginName;
     public static string PluginName
     {

@@ -68,7 +68,7 @@ public class TradPlusAndroid : TradPlusBase
 
     public static bool isFirstShow()
     {
-        return PluginClass.CallStatic<bool>("isFirstShow"); ;
+        return PluginClass.CallStatic<bool>("isFirstShow");
 
     }
 
@@ -79,21 +79,21 @@ public class TradPlusAndroid : TradPlusBase
     }
 
 
-    public static void setGDPRUploadDataLevel(int level)
+    public static void setGDPRDataCollection(int level)
     {
-        PluginClass.CallStatic("setGDPRUploadDataLevel", level);
+        PluginClass.CallStatic("setGDPRDataCollection", level);
     }
 
 
-    public static int getGDPRUploadDataLevel()
+    public static int getGDPRDataCollection()
     {
-        return PluginClass.CallStatic<int>("getGDPRUploadDataLevel");
+        return PluginClass.CallStatic<int>("getGDPRDataCollection");
     }
 
 
     public static bool isEUTraffic()
     {
-        return PluginClass.CallStatic<bool>("isEUTraffic"); ;
+        return PluginClass.CallStatic<bool>("isEUTraffic");
     }
 
     //GDPRChild
@@ -103,15 +103,15 @@ public class TradPlusAndroid : TradPlusBase
     }
 
     //CCPA
-    public static void setCCPADataCollection(bool isCCPA)
+    public static void setCCPADoNotSell(bool isCCPA)
     {
-        PluginClass.CallStatic("setCCPADataCollection", isCCPA);
+        PluginClass.CallStatic("setCCPADoNotSell", isCCPA);
     }
 
     //COPPA
-    public static void setCOPPAChild(bool isChild)
+    public static void setCOPPAIsAgeRestrictedUser(bool isChild)
     {
-        PluginClass.CallStatic("setCOPPAChild", isChild);
+        PluginClass.CallStatic("setCOPPAIsAgeRestrictedUser", isChild);
     }
 
     //California

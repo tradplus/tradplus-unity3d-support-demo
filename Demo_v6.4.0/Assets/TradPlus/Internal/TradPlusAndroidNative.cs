@@ -22,7 +22,7 @@ public class TradPlusAndroidNative
     //两种加载广告的方法只能二选一
     public void CreateNative(int x, int y, string adSceneId = "")
     {
-        _nativePlugin.Call("createNative", x , y, adSceneId);
+        _nativePlugin.Call("createNative", x, y, adSceneId);
     }
 
 
@@ -37,7 +37,7 @@ public class TradPlusAndroidNative
     {
         _nativePlugin.Call("destroyNative");
     }
-   
+
     //进入广告场景
     public void NativeEntryAdScenario(string adSceneId = "")
     {

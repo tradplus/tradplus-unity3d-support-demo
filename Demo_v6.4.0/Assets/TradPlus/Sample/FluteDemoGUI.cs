@@ -36,7 +36,7 @@ public class FluteDemoGUI : MonoBehaviour
     private readonly string _nativeAdUnits = "DDBF26FBDA47FBE2765F1A089F1356BF";
     private readonly string _interstitialAdUnits = "E609A0A67AF53299F2176C3A7783C46D";
     private readonly string _rewardedVideoAdUnits = "39DAC7EAC046676C5404004A311D1DB1";
-    private readonly string _offerWallAdUnits = "1ED0A69A76A9E3D0D0C6E1D9855FDB94";
+    private readonly string _offerWallAdUnits = "4F7F1B9288B2FD513C8549A4A9F5D60F";
 
 #endif
 
@@ -549,7 +549,7 @@ public class FluteDemoGUI : MonoBehaviour
         if (GUILayout.Button("选择结果"))
         {
             ClearStatusLabel();
-            int level = TradPlus.getGDPRUploadDataLevel();
+            int level = TradPlus.getGDPRDataCollection();
             if (level == 0)
             {
                 UpdateStatusLabel("用户同意");
@@ -596,8 +596,8 @@ public class FluteDemoGUI : MonoBehaviour
         if (GUILayout.Button(CreateRequestButtonLabel("Yes CCPPA")))
         {
             ClearStatusLabel();
-            TradPlus.setCCPADataCollection(true);
-            UpdateStatusLabel("同意CCPPA");
+            TradPlus.setCCPADoNotSell(true);
+            UpdateStatusLabel("同意CCPA");
 
 
         }
@@ -606,8 +606,8 @@ public class FluteDemoGUI : MonoBehaviour
         if (GUILayout.Button("NO CCPA "))
         {
             ClearStatusLabel();
-            TradPlus.setCCPADataCollection(false);
-            UpdateStatusLabel("不同意CCPPA");
+            TradPlus.setCCPADoNotSell(false);
+            UpdateStatusLabel("不同意CCPA");
 
         }
 
@@ -627,7 +627,7 @@ public class FluteDemoGUI : MonoBehaviour
         if (GUILayout.Button(CreateRequestButtonLabel("Yes COPPAChild")))
         {
             ClearStatusLabel();
-            TradPlus.setCOPPAChild(true);
+            TradPlus.setCOPPAIsAgeRestrictedUser(true);
             UpdateStatusLabel("同意COPPAChild");
 
 
@@ -637,7 +637,7 @@ public class FluteDemoGUI : MonoBehaviour
         if (GUILayout.Button("NO COPPAChild"))
         {
             ClearStatusLabel();
-            TradPlus.setCOPPAChild(false);
+            TradPlus.setCOPPAIsAgeRestrictedUser(false);
             UpdateStatusLabel("不同意COPPAChild");
 
         }
